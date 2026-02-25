@@ -1,0 +1,15 @@
+{
+  "name": "tweet-cli",
+  "version": "1.0.0",
+  "description": "Full-featured Twitter/X CLI — 23 commands for posting, reading, engaging, and managing users",
+  "bin": {
+    "tweet": "tweet.js"
+  },
+  "dependencies": {
+    "twitter-api-v2": "^1.17.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "license": "MIT"
+}

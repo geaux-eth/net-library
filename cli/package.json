@@ -1,0 +1,28 @@
+{
+  "name": "netlibrary-cli",
+  "version": "1.3.0",
+  "description": "CLI for Net Library — the decentralized digital library on Base",
+  "bin": {
+    "netlibrary": "bin/netlibrary.js"
+  },
+  "keywords": [
+    "net-library",
+    "netlibrary",
+    "web3",
+    "base",
+    "decentralized",
+    "library",
+    "cli",
+    "onchain"
+  ],
+  "author": "Net Library",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "cli-table3": "^0.6.5",
+    "commander": "^12.0.0"
+  }
+}
