@@ -6,7 +6,7 @@ const output = require('../lib/output');
 program
   .name('netlibrary')
   .description('Net Library CLI — interact with the decentralized digital library on Base')
-  .version('1.3.0')
+  .version('1.4.1')
   .option('--json', 'Output raw JSON (for programmatic/agent use)')
   .option('--api-key <key>', 'Override API key')
   .option('--base-url <url>', 'Override base URL')
@@ -30,5 +30,6 @@ require('../commands/embeds')(program);
 require('../commands/info')(program);
 require('../commands/comments')(program);
 require('../commands/relay')(program);
+require('../commands/upvote')(program);
 
 program.parse();

@@ -1,6 +1,6 @@
 # Net Library CLI Reference
 
-> Complete command reference for `netlibrary-cli` v1.2.0
+> Complete command reference for `netlibrary-cli` v1.4.0
 > Install: `npm install -g netlibrary-cli`
 > Requires: Node.js 18+
 
@@ -701,6 +701,78 @@ The CLI shows manual payment instructions (treasury address, USDC contract, amou
 
 ---
 
+## Upvote
+
+Upvote library content onchain. Each upvote costs 0.000025 ETH on Base. You receive $ALPHA tokens in return. Net is $ALPHA.
+
+### `netlibrary upvote item <contentKey>`
+Upvote a library item.
+
+| Option | Description |
+|--------|-------------|
+| `-n, --count <n>` | Number of upvotes (default: 1) |
+| `--tx-hash <hash>` | Pre-sent transaction hash |
+| `--wallet <addr>` | Override wallet address |
+| `--rpc-url <url>` | Override RPC URL |
+
+```bash
+netlibrary upvote item 0x1234...abcd
+netlibrary upvote item 0x1234...abcd --count 5
+```
+
+**Auth:** Bearer token. **Requires:** Membership + wallet + Foundry (cast) or `--tx-hash`.
+
+### `netlibrary upvote stack <stackId>`
+Upvote a stack. Same options as `upvote item`.
+
+```bash
+netlibrary upvote stack 0x333744621253c2d4
+```
+
+### `netlibrary upvote grid <gridId>`
+Upvote a grid. Same options as `upvote item`.
+
+### `netlibrary upvote member <identifier>`
+Upvote a member profile. Accepts wallet address or member ID number.
+
+```bash
+netlibrary upvote member 0xaf5e770478e45650e36805d1ccaab240309f4a20
+netlibrary upvote member 21
+```
+
+### `netlibrary upvote counts <type> [ids...]`
+Check upvote counts for specific entities. No auth required.
+
+Types: `items`, `stacks`, `grids`, `members`
+
+```bash
+netlibrary upvote counts items 0x1234...abcd 0x5678...ef01
+netlibrary upvote counts stacks 0x333744621253c2d4
+netlibrary upvote counts members 0xaf5e77...
+```
+
+### `netlibrary upvote top`
+Show the most upvoted content. No auth required.
+
+| Option | Description |
+|--------|-------------|
+| `-t, --type <type>` | Entity type: items, stacks, grids, members (default: items) |
+| `-l, --limit <n>` | Max results (default: 10) |
+
+```bash
+netlibrary upvote top
+netlibrary upvote top --type stacks --limit 5
+netlibrary upvote top --type members
+```
+
+**Upvote Contract Details:**
+- Contract: `0x000000060CEB69D023227DF64CfB75eC37c75B62` (UpvoteStorageApp)
+- Strategy: `0x00000001b1bcdeddeafd5296aaf4f3f3e21ae876` (PureAlpha)
+- Cost: 0.000025 ETH per upvote, 2.5% protocol fee
+- Reward: $ALPHA token (`0x3D01Fe5A38ddBD307fDd635b4Cb0e29681226D6f`)
+
+---
+
 ## Command Summary
 
 | Command | Auth | Description |
@@ -744,3 +816,9 @@ The CLI shows manual payment instructions (treasury address, USDC contract, amou
 | `relay balance` | None | Check relay wallet balance |
 | `relay fund` | None | Fund relay wallet with USDC |
 | `relay session` | None | Create relay session token |
+| `upvote item` | Bearer | Upvote a library item (costs ETH, receive $ALPHA) |
+| `upvote stack` | Bearer | Upvote a stack |
+| `upvote grid` | Bearer | Upvote a grid |
+| `upvote member` | Bearer | Upvote a member profile |
+| `upvote counts` | None | Check upvote counts for entities |
+| `upvote top` | None | Show most upvoted content |

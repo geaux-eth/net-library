@@ -91,6 +91,7 @@ const put = (path, body, opts) => request('PUT', path, { body, ...opts });
 const patch = (path, body, opts) => request('PATCH', path, { body, ...opts });
 const del = (path, body, opts) => request('DELETE', path, { body, ...opts });
 const getRoot = (path, opts) => requestRoot('GET', path, opts);
+const postRoot = (path, body, opts) => requestRoot('POST', path, { body, ...opts });
 const patchRoot = (path, body, opts) => requestRoot('PATCH', path, { body, ...opts });
 
-module.exports = { request, get, post, put, patch, del, getRoot, patchRoot, getRaw };
+module.exports = { request, get, post, put, patch, del, getRoot, postRoot, patchRoot, getRaw };

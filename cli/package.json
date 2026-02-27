@@ -1,6 +1,6 @@
 {
   "name": "netlibrary-cli",
-  "version": "1.3.0",
+  "version": "1.4.1",
   "description": "CLI for Net Library — the decentralized digital library on Base",
   "bin": {
     "netlibrary": "bin/netlibrary.js"
@@ -23,6 +23,7 @@
   "dependencies": {
     "chalk": "^4.1.2",
     "cli-table3": "^0.6.5",
-    "commander": "^12.0.0"
+    "commander": "^12.0.0",
+    "js-sha3": "^0.9.3"
   }
 }

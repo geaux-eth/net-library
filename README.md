@@ -21,7 +21,7 @@ All content is stored via [Net Protocol](https://netprotocol.app) and served thr
 - **Stacks** — curated collections of related content, like playlists for knowledge
 - **Filesystem stacks** — folder structures with drag-drop, zip import, and GitHub repo import
 - **Social archiving** — preserve posts from 10 platforms before they disappear
-- **Onchain upvotes** — community curation with micro-ETH upvotes
+- **Onchain upvotes** — community curation with micro-ETH upvotes, earn $ALPHA tokens
 - **Agent-friendly API** — full REST API for AI agents and developers
 - **Farcaster miniapp** — native Frame v2 integration
 
@@ -68,6 +68,8 @@ netlibrary search "solidity"
 netlibrary library browse --media-type pdf --sort recent
 netlibrary stacks list
 netlibrary library get <contentKey>
+netlibrary upvote item <contentKey>    # onchain upvote, earn $ALPHA
+netlibrary upvote stack <stackId>      # upvote an entire stack
 ```
 
 ## Agent Integration
@@ -90,7 +92,9 @@ The API supports agent authentication via Bearer tokens, enabling any AI agent t
 
 ## Links
 
+- **Website:** [netlibrary.app](https://netlibrary.app)
 - **App:** [Net Library](https://miniapp-generator-fid-282520-251210015136529.neynar.app/)
+- **ENS:** [netlibrary.eth.limo](https://netlibrary.eth.limo)
 - **CLI:** [netlibrary-cli on npm](https://www.npmjs.com/package/netlibrary-cli)
 - **Net Protocol:** [netprotocol.app](https://netprotocol.app)
 - **Net Protocol Docs:** [docs.netprotocol.app](https://docs.netprotocol.app)
