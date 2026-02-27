@@ -536,3 +536,59 @@ curl "https://miniapp-generator-fid-282520-251210015136529.neynar.app/member-reg
 15. **Fund relay before uploading** -- `relay balance` to check, `relay fund` to add funds
 16. **Relay sessions are auto-created** -- `library upload` handles session creation; use `relay session` only for manual control
 17. **Reuse session tokens** -- valid for 1 hour, pass `--session-token` to avoid re-signing per upload
+
+
+---
+
+## Workflow 11: Onchain Upvotes
+
+Upvote library content onchain. Each upvote costs 0.000025 ETH and rewards the upvoter with $ALPHA tokens via the PureAlpha strategy.
+
+### CLI
+```bash
+# Upvote a library item
+netlibrary upvote item 0xContentKey --json
+
+# Upvote a stack
+netlibrary upvote stack 0x333744621253c2d4 --json
+
+# Upvote a grid
+netlibrary upvote grid <gridId> --json
+
+# Upvote a member profile (by address or member number)
+netlibrary upvote member 21 --json
+netlibrary upvote member 0xaf5e77... --json
+
+# Check upvote counts (no auth required)
+netlibrary upvote counts items 0xContentKey1 0xContentKey2
+netlibrary upvote counts stacks 0x333744621253c2d4
+
+# View most upvoted content
+netlibrary upvote top --type items --limit 10
+netlibrary upvote top --type stacks --limit 5
+```
+
+### API
+```bash
+# Upvote an item (POST to app root, not /api/v1/)
+curl -X POST "https://miniapp-generator-fid-282520-251210015136529.neynar.app/api/upvotes" \
+  -H "Content-Type: application/json" \
+  -d '{"contentKeys": ["0xContentKey"], "type": "item"}'
+
+# Get upvote counts
+curl "https://miniapp-generator-fid-282520-251210015136529.neynar.app/api/upvotes?type=items&ids=0xContentKey1,0xContentKey2"
+
+# Get top upvoted
+curl "https://miniapp-generator-fid-282520-251210015136529.neynar.app/api/upvotes/top?type=items&limit=10"
+```
+
+### Notes
+- **Upvote API is at `/api/upvotes`** (app root), NOT under `/api/v1/`
+- Each upvote costs exactly 0.000025 ETH -- sent onchain to the UpvoteStorageApp contract
+- Contract: `0x000000060CEB69D023227DF64CfB75eC37c75B62` (UpvoteStorageApp)
+- Strategy: `0x00000001b1bcdeddeafd5296aaf4f3f3e21ae876` (PureAlpha)
+- 97.5% of ETH is swapped to $ALPHA tokens for the upvoter, 2.5% protocol fee
+- $ALPHA token: `0x3D01Fe5A38ddBD307fDd635b4Cb0e29681226D6f` (Base)
+- Response format: `{ counts: [number], contentKeys: [string] }` (arrays, not objects)
+- Upvote counts are public and require no authentication
+- "Net is $ALPHA" -- upvoting is the primary way to earn $ALPHA tokens
