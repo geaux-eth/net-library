@@ -32,7 +32,7 @@ Net Library uses ENS subnames as membership credentials:
 | Tier | Price | What You Get |
 |------|-------|-------------|
 | Member | $2 USDC | Member number (`{n}.netlibrary.eth`), library card, 15MB upload access |
-| Unlimited Storage Pass | $20 USDC | Unlimited uploads, Storage Pass NFT |
+| Unlimited Pass | $10 USDC | Unlimited uploads, Storage Pass NFT |
 
 Join via the [Net Library app](https://miniapp-generator-fid-282520-251210015136529.neynar.app/) → **Member** tab → **My Profile**.
 

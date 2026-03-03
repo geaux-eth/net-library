@@ -316,7 +316,7 @@ netlibrary member join
 # Without Foundry: shows manual payment instructions, then:
 netlibrary member join --tx-hash 0xPaymentTxHash
 
-# Buy storage pass -- $20 USDC
+# Buy storage pass -- $10 USDC
 netlibrary member buy storage-pass --tx-hash 0xPaymentTxHash
 
 # Unlock a stack -- $5 USDC
@@ -527,7 +527,7 @@ curl "https://miniapp-generator-fid-282520-251210015136529.neynar.app/member-reg
 6. **CDN URLs are predictable** -- `https://storedon.net/net/8453/storage/load/<contentKey>`
 7. **Search returns both items and stacks** -- check both `items[]` and `stacks[]` in results
 8. **Filesystem stacks need `add-fs-item`** -- regular `add-item` is rejected on FS stacks
-9. **Warm-up period** -- new members have 10 uploads/day for 7 days, then 100/day. Buy Unlimited Storage Pass ($20) to bypass.
+9. **Warm-up period** -- new members have 10 uploads/day for 7 days, then 100/day. Buy Unlimited Pass ($10) to bypass.
 10. **402 means payment required** -- the response includes `price`, `treasuryAddress`, and `usdcContract`
 11. **409 means duplicate** -- item already exists / already in stack / agent already registered
 12. **Stack limit is 20 items** -- unlock for $5 USDC to remove the limit

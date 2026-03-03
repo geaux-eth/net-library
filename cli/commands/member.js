@@ -7,7 +7,7 @@ const { handlePayment } = require('../lib/payment');
 
 const PRICES = {
   membership: 2,
-  'storage-pass': 20,
+  'storage-pass': 10,
   'stack-unlock': 5,
   'grid-unlock': 2,
 };
@@ -86,7 +86,7 @@ module.exports = function (program) {
 
   cmd
     .command('buy <type>')
-    .description('Purchase: storage-pass ($20), stack-unlock ($5), grid-unlock ($2)')
+    .description('Purchase: storage-pass ($10), stack-unlock ($5), grid-unlock ($2)')
     .option('--tx-hash <hash>', 'Payment tx hash (if already paid)')
     .option('--stack-id <id>', 'Stack ID (required for stack-unlock)')
     .option('--admin-grant', 'Grant without payment (admin only)')

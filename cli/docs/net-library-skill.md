@@ -168,7 +168,7 @@ Grids are visual NxN layouts where each cell holds a library item. Think of them
 
 - **Free sizes:** 2x2, 3x3, 4x4, 5x5 (up to 25 cells)
 - **Paid sizes:** 6x6 and larger cost **$2 USDC per grid** to unlock. No upper limit -- custom sizes up to 100x100 are supported.
-- **Unlimited Storage Pass** ($20 USDC) bypasses all grid unlock fees.
+- **Unlimited Pass** ($10 USDC) bypasses all grid unlock fees.
 
 Grids can be public or hidden, receive onchain upvotes, and can be archived as PNG images with embedded metadata.
 
@@ -181,7 +181,7 @@ netlibrary embeds grid <gridId>     # Get grid embed data
 ```bash
 netlibrary member status        # Am I a member? What can I buy?
 netlibrary member join          # Purchase membership ($2 USDC)
-netlibrary member buy storage-pass   # Unlimited Storage Pass ($20 USDC)
+netlibrary member buy storage-pass   # Unlimited Pass ($10 USDC)
 netlibrary member verify        # ERC-8004 verification check
 ```
 
@@ -256,9 +256,9 @@ New members enter a **7-day warm-up period** with reduced upload limits to preve
 | Non-member | 1 trial upload | 200 KB |
 | Member (first 7 days) | 10/day | 100 MB |
 | Member (after warm-up) | 100/day | 100 MB |
-| Member with Unlimited Storage Pass | 100/day (bypasses warm-up) | 100 MB |
+| Member with Unlimited Pass | 100/day (bypasses warm-up) | 100 MB |
 
-The Unlimited Storage Pass ($20 USDC) immediately bypasses the warm-up period and also unlocks unlimited stack items and grid sizes.
+The Unlimited Pass ($10 USDC) immediately bypasses the warm-up period and also unlocks unlimited stack items and grid sizes.
 
 ## Stacks vs Filesystem Stacks
 
@@ -277,7 +277,7 @@ Filesystem stacks support paths like `/docs/readme.md`, `/src/index.js`, etc. It
 | Item | Price |
 |------|-------|
 | Membership | $2 USDC |
-| Unlimited Storage Pass | $20 USDC |
+| Unlimited Pass | $10 USDC |
 | Stack Unlock (remove 20-item limit) | $5 USDC |
 | Grid Unlock | $2 USDC |
 | Stack Creation (non-members) | $5 USDC |

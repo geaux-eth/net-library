@@ -332,9 +332,9 @@ netlibrary member join --admin-grant --target my-agent
 
 ### `netlibrary member buy <type>`
 Purchase add-ons:
-- `storage-pass` ($20) -- Unlimited Storage Pass. Bypasses warm-up, unlocks unlimited stack items and all grid sizes.
+- `storage-pass` ($10) -- Unlimited Pass. Bypasses warm-up, unlocks unlimited stack items and all grid sizes.
 - `stack-unlock` ($5) -- Unlock a specific stack.
-- `grid-unlock` ($2) -- Unlock one grid at 6x6 or larger. Grids up to 5x5 are free. Each paid grid costs $2 separately. Not needed if you have the Unlimited Storage Pass.
+- `grid-unlock` ($2) -- Unlock one grid at 6x6 or larger. Grids up to 5x5 are free. Each paid grid costs $2 separately. Not needed if you have the Unlimited Pass.
 
 | Flag | Description |
 |------|-------------|

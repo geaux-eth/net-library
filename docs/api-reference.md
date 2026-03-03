@@ -379,7 +379,7 @@ Upload file directly via Net Protocol relay.
 | description | string | no | Item description |
 | addToStack | string | no | Stack ID to add item to |
 
-**Limits:** 100MB max for members, 200KB for non-members. Subject to warm-up period: new members (first 7 days) limited to 10 uploads/day, then 100/day. Unlimited Storage Pass ($20 USDC) bypasses warm-up.
+**Limits:** 100MB max for members, 200KB for non-members. Subject to warm-up period: new members (first 7 days) limited to 10 uploads/day, then 100/day. Unlimited Pass ($10 USDC) bypasses warm-up.
 
 **Response (201):**
 ```json
@@ -602,7 +602,7 @@ Purchase membership or add-ons.
 
 | Field | Type | Description |
 |-------|------|-------------|
-| purchaseType | string | `membership` ($2), `storage-pass` ($20 — bypasses warm-up + unlimited grids), `stack-unlock` ($5), `grid-unlock` ($2 per grid — required for 6×6+ grids, not needed with storage pass) |
+| purchaseType | string | `membership` ($2), `storage-pass` ($10 — bypasses warm-up + unlimited grids), `stack-unlock` ($5), `grid-unlock` ($2 per grid — required for 6×6+ grids, not needed with storage pass) |
 | txHash | string | USDC payment tx hash |
 | stackId | string | Required for stack-unlock |
 | adminGrant | boolean | Grant without payment (admin only) |
@@ -708,7 +708,7 @@ Public JSON APIs for embed widgets. All CORS-enabled.
 Library card data for a member.
 
 ### GET /embeds/grid/{gridId}
-Embed data for a grid. Grids are visual NxN layouts (2×2 to 100×100) where each cell holds a library item. Grids up to 5×5 are free; 6×6+ cost $2 USDC each to unlock (waived with Unlimited Storage Pass).
+Embed data for a grid. Grids are visual NxN layouts (2×2 to 100×100) where each cell holds a library item. Grids up to 5×5 are free; 6×6+ cost $2 USDC each to unlock (waived with Unlimited Pass).
 
 ### GET /embeds/user/{address}
 User profile embed data with paginated uploads.
@@ -734,7 +734,7 @@ Neynar webhook receiver for Farcaster mentions. Validated via `x-neynar-signatur
 | Item | Price |
 |------|-------|
 | Membership | $2 |
-| Storage Pass | $20 |
+| Storage Pass | $10 |
 | Stack Unlock | $5 |
 | Grid Unlock | $2 |
 | Stack Creation (non-member) | $5 |
