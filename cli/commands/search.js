@@ -26,33 +26,49 @@ module.exports = function (program) {
           auth: false,
         });
 
-        if (data.items && data.items.length > 0) {
-          if (!output.isJsonMode()) console.log('\nItems:');
-          output.table(
-            ['Title', 'Author', 'Type', 'Key'],
-            data.items.map(i => [
-              i.title || '—',
-              i.author || '—',
-              i.mediaType || '—',
-              i.contentKey,
-            ])
-          );
-        }
+        if (output.isJsonMode()) {
+          output.json({
+            items: (data.items || []).map(i => ({
+              title: i.title || null,
+              author: i.author || null,
+              mediaType: i.mediaType || null,
+              contentKey: i.contentKey,
+            })),
+            stacks: (data.stacks || []).map(s => ({
+              name: s.name || null,
+              owner: s.ownerUsername || s.owner || null,
+              itemCount: s.itemCount || 0,
+              id: s.id,
+            })),
+            totalResults: data.totalResults || 0,
+          });
+        } else {
+          if (data.items && data.items.length > 0) {
+            console.log('\nItems:');
+            output.table(
+              ['Title', 'Author', 'Type', 'Key'],
+              data.items.map(i => [
+                i.title || '—',
+                i.author || '—',
+                i.mediaType || '—',
+                i.contentKey,
+              ])
+            );
+          }
 
-        if (data.stacks && data.stacks.length > 0) {
-          if (!output.isJsonMode()) console.log('\nStacks:');
-          output.table(
-            ['Name', 'Owner', 'Items', 'ID'],
-            data.stacks.map(s => [
-              s.name || '—',
-              s.ownerUsername || s.owner || '—',
-              s.itemCount || 0,
-              s.id,
-            ])
-          );
-        }
+          if (data.stacks && data.stacks.length > 0) {
+            console.log('\nStacks:');
+            output.table(
+              ['Name', 'Owner', 'Items', 'ID'],
+              data.stacks.map(s => [
+                s.name || '—',
+                s.ownerUsername || s.owner || '—',
+                s.itemCount || 0,
+                s.id,
+              ])
+            );
+          }
 
-        if (!output.isJsonMode()) {
           console.log(`\n${data.totalResults || 0} total results`);
         }
       } catch (err) {

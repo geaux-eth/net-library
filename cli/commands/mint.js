@@ -216,7 +216,7 @@ module.exports = function (program) {
           console.log(`  Tier:    ${chalk.green(tier)}${earlyRemaining > 0 ? chalk.dim(` (${earlyRemaining} early slots left)`) : ''}`);
           console.log(`  Price:   ${chalk.cyan('$10 USDC')}`);
           console.log(`  Wallet:  ${chalk.dim(wallet)}`);
-          console.log(`  You get: Unlimited onchain storage${freeMemb} + 1 free hazza.name`);
+          console.log(`  You get: Upload unlimited items to stacks and grids${freeMemb} + 1 free hazza.name`);
           if (earlyRemaining > 0 && preMintMember && preMintMember.isMember) {
             console.log(`  Member:  ${chalk.green(`Already #${preMintMember.memberId}`)} (${preMintMember.ensSubname})`);
           }
@@ -284,7 +284,23 @@ module.exports = function (program) {
           }
         }
 
-        // Step 7: Post-mint membership handling for "we are so early" tier
+        // Step 7: Notify backend to register pass in KV store
+        try {
+          const notifyData = await api.postRoot('/membership/stack-pass', {
+            address: wallet,
+            txHash,
+            nftMint: true,
+            tokenId,
+            tier: mintedTier,
+          });
+          if (!output.isJsonMode() && notifyData.verified) {
+            console.log(chalk.dim('Pass registered with Net Library backend.'));
+          }
+        } catch {
+          // Non-fatal — pass is on-chain regardless
+        }
+
+        // Step 8: Post-mint membership handling for "we are so early" tier
         let membership = null;
         let membershipGranted = false;
         if (mintedTier === 'we are so early') {

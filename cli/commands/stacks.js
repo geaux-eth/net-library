@@ -68,39 +68,43 @@ module.exports = function (program) {
         fields.push(['Upvotes', 'upvotes']);
         fields.push(['Views', 'views']);
         fields.push(['Created', 'createdAt', v => v ? new Date(v).toLocaleString() : null]);
-        output.item(s, fields);
+        if (output.isJsonMode()) {
+          const result = { ...s };
+          if (data.items) result.items = data.items;
+          output.json(result);
+        } else {
+          output.item(s, fields);
 
-        if (data.items && data.items.length > 0) {
-          if (s.isFileSystem) {
-            // Filesystem view: show paths
-            if (!output.isJsonMode()) console.log('\nFiles:');
-            output.table(
-              ['Path', 'Size', 'Type', 'Key'],
-              data.items.map(i => {
-                const size = i.fileSize ? (i.fileSize < 1024 ? `${i.fileSize} B` : i.fileSize < 1024 * 1024 ? `${(i.fileSize / 1024).toFixed(1)} KB` : `${(i.fileSize / (1024 * 1024)).toFixed(1)} MB`) : '—';
-                return [
-                  i.path || i.fileName || '—',
-                  size,
-                  i.mimeType || '—',
-                  i.contentKey,
-                ];
-              })
-            );
-          } else {
-            // Regular view: show titles
-            if (!output.isJsonMode()) console.log('\nItems:');
-            output.table(
-              ['Title', 'Author', 'Type', 'Key'],
-              data.items.map(i => {
-                const book = i.book || {};
-                return [
-                  book.title || i.title || '—',
-                  book.author || '—',
-                  book.mediaType || '—',
-                  i.contentKey,
-                ];
-              })
-            );
+          if (data.items && data.items.length > 0) {
+            if (s.isFileSystem) {
+              console.log('\nFiles:');
+              output.table(
+                ['Path', 'Size', 'Type', 'Key'],
+                data.items.map(i => {
+                  const size = i.fileSize ? (i.fileSize < 1024 ? `${i.fileSize} B` : i.fileSize < 1024 * 1024 ? `${(i.fileSize / 1024).toFixed(1)} KB` : `${(i.fileSize / (1024 * 1024)).toFixed(1)} MB`) : '—';
+                  return [
+                    i.path || i.fileName || '—',
+                    size,
+                    i.mimeType || '—',
+                    i.contentKey,
+                  ];
+                })
+              );
+            } else {
+              console.log('\nItems:');
+              output.table(
+                ['Title', 'Author', 'Type', 'Key'],
+                data.items.map(i => {
+                  const book = i.book || {};
+                  return [
+                    book.title || i.title || '—',
+                    book.author || '—',
+                    book.mediaType || '—',
+                    i.contentKey,
+                  ];
+                })
+              );
+            }
           }
         }
       } catch (err) {

@@ -312,14 +312,14 @@ module.exports = function (program) {
     .action(async (type, ids) => {
       try {
         if (!ids || ids.length === 0) {
-          output.error('Provide at least one ID');
-          process.exit(1);
+          output.error('Provide at least one ID. Usage: netlibrary upvote counts <type> <id1> [id2...]');
+          return process.exit(1);
         }
 
         const validTypes = ['items', 'stacks', 'grids', 'members'];
         if (!validTypes.includes(type)) {
           output.error(`Invalid type. Choose: ${validTypes.join(', ')}`);
-          process.exit(1);
+          return process.exit(1);
         }
 
         // Resolve each entity to get operator addresses for scoreKey computation
@@ -343,7 +343,7 @@ module.exports = function (program) {
 
         if (entries.length === 0) {
           output.error('No valid entities found');
-          process.exit(1);
+          return process.exit(1);
         }
 
         const countsMap = await fetchUpvoteCounts(entries);
